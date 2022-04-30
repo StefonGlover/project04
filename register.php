@@ -1,5 +1,8 @@
 <?php include("header.php");
+include "functions.php";
+include "database.php";
 
+createUser();
 
 
 ?>
@@ -11,8 +14,13 @@
         <input type="text" name="lname" placeholder="Lastname" required><br>
         <input type="text" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
-        <input type="confirm_password" name="confirmPassword" placeholder="Confirm Password" required><br>
-        <input name="register" type="submit" value="Register">
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" required><br>
+        <input name="register" type="submit" value="Register"><br>
+        <label for="user_type">Choose your type:</label>
+        <select name="user_type">
+            <option value="buyer">Buyer</option>
+            <option value="seller">Seller</option>
+        </select>
     </form>
     <p>Already have an account? <a class="linkify" href="index.php">Login</a></p>
 </div>

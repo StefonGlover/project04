@@ -12,16 +12,25 @@ if (isset($_POST['login'])) {
 
     if ($connection) {
 
-        $query = mysqli_query($connection, "SELECT * FROM users WHERE email='$email' AND  password='$password'");
+        $query = mysqli_query($connection, "SELECT * FROM users WHERE email='$email'");
 
         $rows = mysqli_num_rows($query);
+        $results = mysqli_fetch_array($query, MYSQLI_ASSOC);
 
         if ($rows == 1) {
-            echo "User found!";
+            if (password_verify($password, $results['password'])) {
 
-            $_SESSION["email"] = $email;
+                $_SESSION["email"] = $email;
 
-            header("Location: home.php");
+                if ($results['admin'] == 'yes') {
+                    header("Location: admin_page.php");
+                } else {
+                    header("Location: home.php");
+                }
+            } else {
+                $error = "Incorrect email or password.";
+                echo "<script type='text/javascript'>alert('$error');</script>";
+            }
         } else {
             $error = "Incorrect email or password.";
             echo "<script type='text/javascript'>alert('$error');</script>";
