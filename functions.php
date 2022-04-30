@@ -2,7 +2,7 @@
 <?php
 
 
-function createRows()
+function createUser()
 {
 
     if (isset($_POST['register'])) {
@@ -10,13 +10,13 @@ function createRows()
 
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
 
-        $username = mysqli_real_escape_string($connection, $email);
+        $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
-        $first_name = mysqli_real_escape_string($connection, $first_name);
-        $last_name = mysqli_real_escape_string($connection, $last_name);
+        $fname = mysqli_real_escape_string($connection, $fname);
+        $lname = mysqli_real_escape_string($connection, $lname);
 
 
 
@@ -25,8 +25,8 @@ function createRows()
         $hashF_and_salt = $hashFormat . $salt;
         $password = crypt($password, $hashF_and_salt);
 
-        $query = "INSERT INTO users(email,password, first_name, last_name) ";
-        $query .= "VALUES ('$username', '$password', '$first_name', '$last_name')";
+        $query = "INSERT INTO users(email, password, fname, lname) ";
+        $query .= "VALUES ('$email', '$password', '$fname', '$lname')";
 
         $result = mysqli_query($connection, $query);
         if (!$result) {
@@ -36,4 +36,12 @@ function createRows()
             echo "User created!";
         }
     }
+}
+
+
+function logoutUser()
+{
+    session_start();
+    session_unset();
+    session_destroy();
 }

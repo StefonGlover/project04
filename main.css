@@ -46,18 +46,7 @@
       color: blue;
   }
 
-  .container {
-    background-color: white;
-    width: 500px;
-    margin: 10px;
-    margin-left: auto;
-    padding: 5px;
-    margin-right: auto;
-    margin-top: 50px;
-    border: 2px solid black;
-}
-
-
+ 
 #login-form {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 30%;

@@ -1,9 +1,16 @@
+<?php
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>$ideJob$</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="main.css" rel="stylesheet">
 </head>
@@ -14,7 +21,24 @@
             <p>$ideJob$</p>
         </div>
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li>
+                <?php
+
+                if (!isset($_SESSION["email"])) {
+                    echo "<a href=\"index.php\">Login</a>";
+                }
+                ?>
+            </li>
+            <li>
+                <?php
+
+                if (!isset($_SESSION["email"])) {
+                    echo "<a href=\"home.php\" style=display:none>Home</a>";
+                } else {
+                    echo "<a href=\"home.php\">Home</a>";
+                }
+                ?>
+            </li>
             <li><a href="#">About</a></li>
             <li><a href="#">Resources</a></li>
             <li>
