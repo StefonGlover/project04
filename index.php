@@ -1,21 +1,35 @@
-<?php include("header.php"); ?>
-<div class="wrapper">
-    <h2>Login</h2>
-    <p>Please fill in your credentials to login.</p>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" name="username">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password">
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Login">
-        </div>
-        <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+<?php include("header.php");
+
+
+if (isset($_POST['login'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $connection = mysqli_connect('localhost', 'root', '', 'project4');
+
+    if ($connection) {
+
+        echo "We are connected";
+    } else {
+
+        echo "We are not connected";
+        die("Database connection failed");
+    }
+}
+
+
+?>
+
+
+<div id="login-form">
+    <h2>Login to $ideJob$</h2>
+    <form action="login_submit.php" method="post">
+        <input type="text" name="email" placeholder="Enter your email"><br>
+        <input type="password" name="password" placeholder="Enter your password"><br>
+        <input name="Submit" type="submit" value="Login">
     </form>
+    <p>Don't have an account? <a class="linkify" href="register.php">Click Here to Register.</a></p>
 </div>
 
 <?php include("footer.php"); ?>
