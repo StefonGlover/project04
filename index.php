@@ -21,14 +21,18 @@ if (isset($_POST['login'])) {
             if (password_verify($password, $results['password'])) {
 
                 $_SESSION["email"] = $email;
+                $_SESSION['fname'] = $results['fname'];
+                $_SESSION['lname'] = $results['lname'];
+                $_SESSION['user_type'] = $results['user_type'];
+                $_SESSION['uid'] = $results['id'];
+
 
 
                 if ($results['admin'] == 'yes') {
 
-                    $_SESSION['fname'] = $results['fname'];
-                    $_SESSION['lname'] = $results['lname'];
-
                     header("Location: admin_page.php");
+                } else if ($results['user_type'] ==  'seller') {
+                    header("Location: seller.php");
                 } else {
 
                     header("Location: home.php");

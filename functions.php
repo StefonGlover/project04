@@ -73,3 +73,39 @@ function logoutUser()
     session_unset();
     session_destroy();
 }
+
+
+function uploadService()
+{
+    if (isset($_POST['sell'])) {
+        global $connection;
+
+        $title = $_POST['title'];
+        $price = $_POST['price'];
+        $zipcode = $_POST['zipcode'];
+        $date = strtotime($_POST["date"]);
+        $date = date('Y-m-d H:i:s', $date);
+        $file = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+
+        $seller_email =  $_SESSION['email'];
+
+        $title = mysqli_real_escape_string($connection, $title);
+        $price = mysqli_real_escape_string($connection, $price);
+        $zipcode = mysqli_real_escape_string($connection, $zipcode);
+        $seller_email = mysqli_real_escape_string($connection, $seller_email);
+
+
+
+        $query = "INSERT INTO service(title, price, zipcode, seller_email, date, imgURL) ";
+        $query .= "VALUES ('$title', '$price', '$zipcode', '$seller_email', '$date', '$file')";
+
+        $result = mysqli_query($connection, $query);
+        if (!$result) {
+            die('Query FAILED' . mysqli_error($connection));
+        } else {
+
+
+            echo "<script type='text/javascript'>alert('Service created!');</script>";
+        }
+    }
+}
