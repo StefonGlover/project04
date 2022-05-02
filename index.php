@@ -22,16 +22,24 @@ if (isset($_POST['login'])) {
 
                 $_SESSION["email"] = $email;
 
+
                 if ($results['admin'] == 'yes') {
+
+                    $_SESSION['fname'] = $results['fname'];
+                    $_SESSION['lname'] = $results['lname'];
+
                     header("Location: admin_page.php");
                 } else {
+
                     header("Location: home.php");
                 }
             } else {
+
                 $error = "Incorrect email or password.";
                 echo "<script type='text/javascript'>alert('$error');</script>";
             }
         } else {
+
             $error = "Incorrect email or password.";
             echo "<script type='text/javascript'>alert('$error');</script>";
         }

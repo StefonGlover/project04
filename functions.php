@@ -44,6 +44,28 @@ function createUser()
     }
 }
 
+function numOfBuyers()
+{
+    global $connection;
+
+    $query = mysqli_query($connection, "SELECT * FROM users WHERE  user_type='buyer'");
+
+    $rows = mysqli_num_rows($query);
+
+    return $rows;
+}
+
+function numOfSellers()
+{
+    global $connection;
+
+    $query = mysqli_query($connection, "SELECT * FROM users WHERE  user_type='seller'");
+
+    $rows = mysqli_num_rows($query);
+
+    return $rows;
+}
+
 
 function logoutUser()
 {
