@@ -27,7 +27,6 @@ if (isset($_POST['login'])) {
                 $_SESSION['uid'] = $results['id'];
 
 
-
                 if ($results['admin'] == 'yes') {
 
                     header("Location: admin_page.php");
@@ -35,7 +34,7 @@ if (isset($_POST['login'])) {
                     header("Location: seller.php");
                 } else {
 
-                    header("Location: home.php");
+                    header("Location: buyer.php");
                 }
             } else {
 

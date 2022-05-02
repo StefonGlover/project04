@@ -40,7 +40,6 @@ session_start();
                 ?>
             </li>
             <li><a href="https://codd.cs.gsu.edu/~sglover6/project4.pdf">About</a></li>
-            <li><a href="#">Resources</a></li>
             <li>
                 <?php
 
